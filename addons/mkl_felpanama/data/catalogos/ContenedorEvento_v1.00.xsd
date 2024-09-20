@@ -1,0 +1,71 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  elementFormDefault="qualified">  
+
+    
+   <xs:element name="dVerForm">
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:pattern value="[0-9]{1,2}[.][0-9]{2}"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+ 
+  <xs:complexType name="gResProc">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="dCodRes" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="dMsgRes" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+    
+    <xs:element name="rContEv">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="dVerForm" minOccurs="1" maxOccurs="1">
+                  <xs:annotation>
+                    <xs:documentation>
+                      Versión del formato
+                    </xs:documentation>
+                  </xs:annotation>
+                  <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                      <xs:totalDigits value="4" />
+                      <xs:fractionDigits value="2" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+               
+                <xs:element name="xEvento"  minOccurs="1" maxOccurs="1">
+                  <xs:annotation>
+                    <xs:documentation>
+                      XML del Evento
+                    </xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                        <xs:any  namespace="##any" processContents="skip"/> 
+                    </xs:sequence>
+                </xs:complexType>
+                </xs:element>
+                
+                
+                <xs:element name="rRetEnviEventoFe"  minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                    <xs:documentation>
+                      Respuesta del WS Recepción Evento
+                    </xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="dVerForm"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="iAmb" type="xs:int"/>
+                        <xs:element minOccurs="0" maxOccurs="1" name="dVerApl" type="xs:string"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="dFecProc" type="xs:string"/>
+                        <xs:element minOccurs="1" maxOccurs="unbounded" name="gResProc" type="gResProc"/>
+                    </xs:sequence>
+                </xs:complexType>
+                </xs:element>
+
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>    
+</xs:schema>

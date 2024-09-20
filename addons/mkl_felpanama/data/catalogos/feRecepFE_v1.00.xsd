@@ -1,0 +1,45 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dgi-fep.mef.gob.pa/wsdl/FeRecepFE" elementFormDefault="qualified" targetNamespace="http://dgi-fep.mef.gob.pa/wsdl/FeRecepFE">
+    <xs:element name="feDatosMsg">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" maxOccurs="1" name="rEnviFe" type="tns:rEnviFe"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="dId">
+    <xs:simpleType>
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="[0-9]{1,15}"/>
+        </xs:restriction>
+    </xs:simpleType>
+   </xs:element>
+    
+    <xs:complexType name="rEnviFe">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="dVerForm" type="xs:decimal"/>
+            <xs:element minOccurs="1" maxOccurs="1" ref="tns:dId"/>            
+            <xs:element name="iAmb" minOccurs="1" maxOccurs="1">
+            <xs:simpleType>
+              <xs:restriction base="xs:integer">
+                <xs:enumeration value="1">
+                  <xs:annotation>
+                    <xs:documentation>
+                      Producción
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="2">
+                  <xs:annotation>
+                    <xs:documentation>
+                      Pruebas
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+      </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="xFe" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

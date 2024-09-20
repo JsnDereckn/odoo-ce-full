@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="PartnerListScreen" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('partner-detail')][5]/label" position="replace">
+            <label class="form-label label" for="vat">RUC</label>     
+        </xpath>
+        <xpath expr="//div[hasclass('partner-detail')][5]" position="after">
+            <div class="partner-detail col">                                                           
+                <label class="form-label label" for="dv">Dígito verificador</label>                           
+                <input class="detail dv form-control" id="dv" name="dv" t-model="changes.dv" t-att="{'disabled': isFieldCommercialAndPartnerIsChild('dv')}" t-att-class="{'border-danger': missingFields.includes('dv')}" />
+            </div>  
+            <div class="partner-detail col">
+                <label class="form-label label" for="tipo_ruc">Tipo de RUC</label>
+                <select class="detail form-select" id="tipo_ruc" name="tipo_ruc" t-model="changes.tipo_ruc" t-att="{'disabled': isFieldCommercialAndPartnerIsChild('tipo_ruc')}" t-att-class="{'border-danger': missingFields.includes('tipo_ruc')}">
+                    <option value="">None</option>
+                    <t t-foreach="pos.tipos_ruc" t-as="tipo_ruc" t-key="tipo_ruc.id">
+                        <option t-att-value="tipo_ruc.id">
+                            <t t-esc="tipo_ruc.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div class="partner-detail col">
+                <label class="form-label label" for="tipo_receptor">Tipo de receptor (FEL)</label>
+                <select class="detail form-select" id="tipo_receptor" name="tipo_receptor" t-model="changes.tipo_receptor" t-att="{'disabled': isFieldCommercialAndPartnerIsChild('tipo_receptor')}" t-att-class="{'border-danger': missingFields.includes('tipo_receptor')}">
+                    <option value="">None</option>
+                    <t t-foreach="pos.tipos_receptor" t-as="tipo_receptor" t-key="tipo_receptor.id">
+                        <option t-att-value="tipo_receptor.id">
+                            <t t-esc="tipo_receptor.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+    </t>
+</templates>

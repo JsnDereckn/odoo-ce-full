@@ -1,0 +1,51 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dgi-fep.mef.gob.pa/wsdl/FeRecepFE" elementFormDefault="qualified" targetNamespace="http://dgi-fep.mef.gob.pa/wsdl/FeRecepFE">
+  <xs:element name="feDatosMsg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="rEnviConsLoteFe" type="tns:rEnviConsLoteFe"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="dVerForm">
+    <xs:simpleType>
+        <xs:restriction base="xs:decimal">
+            <xs:pattern value="[0-9]{1,2}[.][0-9]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="dId">
+    <xs:simpleType>
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="[0-9]{1,15}"/>
+        </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+     
+  <xs:element name="iAmb">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">       
+        <xs:enumeration value="1"/>
+        <xs:enumeration value="2"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>  
+  
+  <xs:element name="dProtConsLote">
+    <xs:simpleType>
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="[0-9]{1,15}"/>
+        </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+     
+  <xs:complexType name="rEnviConsLoteFe">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:dVerForm"/>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:dId"/>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:iAmb"/>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:dProtConsLote"/>       
+    </xs:sequence>
+  </xs:complexType>    
+</xs:schema>

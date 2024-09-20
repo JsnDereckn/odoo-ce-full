@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+
+        <record id="panama_fel_product_tmpl_form" model="ir.ui.view">
+            <field name="name">panama_fel_product_tmpl_form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='detailed_type']" position="after">
+                    <field name="codigo_fel" options="{'no_create': True, 'no_open': True}" />
+                    <field name="uom_id" options="{'no_create': True}"/>                   
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

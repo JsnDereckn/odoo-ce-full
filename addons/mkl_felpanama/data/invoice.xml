@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="enviar_fel_panama">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                xmlns:tem="http://tempuri.org/"
+                xmlns:ser="http://schemas.datacontract.org/2004/07/Services.ObjComprobante.v1_0">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <tem:Enviar>
+                        <tem:tokenEmpresa t-esc="tokenEmpresa" />
+                        <tem:tokenPassword t-esc="tokenPassword" />
+                        <tem:documento>
+                            <ser:codigoSucursalEmisor t-esc="codigoSucursalEmisor" />
+                            <ser:tipoSucursal t-esc="tipoSucursal"/>
+                            <ser:datosTransaccion>
+                                <ser:tipoEmision>01</ser:tipoEmision>
+                                <ser:tipoDocumento t-esc="tipoDocumento" />
+                                <ser:numeroDocumentoFiscal t-esc="numeroDocumentoFiscal" />
+                                <ser:puntoFacturacionFiscal>001</ser:puntoFacturacionFiscal>
+                                <ser:fechaEmision t-esc="fechaEmision" />
+                                <ser:naturalezaOperacion>01</ser:naturalezaOperacion>
+                                <ser:tipoOperacion>1</ser:tipoOperacion>       <!-- 1: Salida o Venta -->
+                                <ser:destinoOperacion t-esc="destinoOperacion" />
+                                <ser:formatoCAFE>3</ser:formatoCAFE>
+                                <ser:entregaCAFE>3</ser:entregaCAFE>
+                                <ser:envioContenedor>1</ser:envioContenedor>
+                                <ser:procesoGeneracion>1</ser:procesoGeneracion>
+                                <ser:tipoVenta />
+                                <ser:informacionInteres>Factura interna</ser:informacionInteres>
+                                <ser:cliente>
+                                    <ser:tipoClienteFE t-esc="tipoClienteFE" />
+                                    <ser:tipoContribuyente t-if="destinoOperacion!='2'" t-esc="tipoContribuyente" />
+                                    <ser:numeroRUC t-if="destinoOperacion!='2'" t-esc="numeroRUC" />
+                                    <ser:digitoVerificadorRUC t-if="destinoOperacion!='2'" t-esc="digitoVerificadorRUC" />
+                                    <ser:razonSocial t-esc="razonSocial" />
+                                    <ser:direccion t-esc="direccion" />
+                                    <ser:tipoIdentificacion t-if="destinoOperacion=='2'">99</ser:tipoIdentificacion>
+                                    <ser:nroIdentificacionExtranjero t-if="destinoOperacion=='2'" t-esc="nroIdentificacionExtranjero"/>
+                                    <ser:codigoUbicacion t-if="destinoOperacion!='2'">1-1-2</ser:codigoUbicacion>
+                                    <!-- <ser:provincia>BOCAS DEL TORO</ser:provincia>
+                                    <ser:distrito>BOCAS DEL TORO</ser:distrito>
+                                    <ser:corregimiento>BASTIMENTOS</ser:corregimiento> -->
+                                    <!-- <ser:paisExtranjero></ser:paisExtranjero> -->
+                                    <ser:telefono1 t-esc="telefono1" />
+                                    <ser:correoElectronico1 t-esc="correoElectronico1"/>
+                                    <ser:pais t-esc="pais" />
+                                    <!-- <ser:paisOtro></ser:paisOtro> -->
+                                </ser:cliente>
+                                <ser:listaDocsFiscalReferenciados t-if="codigo_doc=='04'">
+                                    <t t-foreach="fel_relacionadas" t-as="fact_rel">
+                                        <ser:docFiscalReferenciado>
+                                            <ser:fechaEmisionDocFiscalReferenciado t-esc="fact_rel['fechaEmisionDocFiscalReferenciado']" />
+                                            <ser:cufeFEReferenciada t-esc="fact_rel['cufeFEReferenciada']" />
+                                            <ser:nroFacturaPapel></ser:nroFacturaPapel>
+                                            <ser:nroFacturaImpFiscal></ser:nroFacturaImpFiscal>
+                                        </ser:docFiscalReferenciado>
+                                    </t>
+                                </ser:listaDocsFiscalReferenciados>
+                                <ser:datosFacturaExportacion t-if="destinoOperacion=='2'">
+                                    <ser:condicionesEntrega t-esc="condicionesEntrega" />
+                                    <ser:monedaOperExportacion t-esc="monedaOperExportacion" />
+                                    <ser:puertoEmbarque t-esc="puertoEmbarque" />
+                                </ser:datosFacturaExportacion>
+                            </ser:datosTransaccion>
+                            <ser:listaItems>
+                                <t t-foreach="listaItems" t-as="item">
+                                    <ser:item>
+                                        <ser:descripcion t-esc="item['descripcion']"></ser:descripcion>
+                                        <ser:codigo t-esc="item['codigo']"></ser:codigo>
+                                        <ser:unidadMedida t-esc="item['unidadMedida']"></ser:unidadMedida>
+                                        <ser:cantidad t-esc="item['cantidad']"></ser:cantidad>
+                                        <ser:codigoCPBS t-esc="item['codigoCPBS']"></ser:codigoCPBS>
+                                        <ser:precioUnitario t-esc="item['precioUnitario']"></ser:precioUnitario>
+                                        <ser:precioUnitarioDescuento t-esc="item['precioUnitarioDescuento']"></ser:precioUnitarioDescuento>
+                                        <ser:precioItem t-esc="item['precioItem']"></ser:precioItem>
+                                        <ser:valorTotal t-esc="item['valorTotal']"></ser:valorTotal>
+                                        <ser:tasaITBMS t-esc="item['tasaITBMS']"></ser:tasaITBMS>
+                                        <ser:valorITBMS t-esc="item['valorITBMS']"></ser:valorITBMS>
+                                    </ser:item>
+                                </t>
+                            </ser:listaItems>
+                            <ser:totalesSubTotales>
+                                <ser:totalPrecioNeto t-esc="totalPrecioNeto" />
+                                <ser:totalITBMS t-esc="totalITBMS" />
+                                <ser:totalISC></ser:totalISC>
+                                <ser:totalMontoGravado t-esc="totalITBMS" />
+                                <ser:totalDescuento></ser:totalDescuento>
+                                <ser:totalAcarreoCobrado></ser:totalAcarreoCobrado>
+                                <ser:valorSeguroCobrado></ser:valorSeguroCobrado>
+                                <ser:totalFactura t-esc="totalFactura" />
+                                <ser:totalValorRecibido t-esc="totalFactura" />
+                                <ser:tiempoPago>3</ser:tiempoPago>
+                                <ser:nroItems t-esc="nroItems" />
+                                <ser:totalTodosItems t-esc="totalFactura" />
+                                <ser:listaFormaPago>
+                                    <ser:formaPago>
+                                        <ser:formaPagoFact>02</ser:formaPagoFact>
+                                        <ser:descFormaPago></ser:descFormaPago>
+                                        <ser:valorCuotaPagada t-esc="totalFactura" />
+                                    </ser:formaPago>
+                                </ser:listaFormaPago>
+                                <ser:listaPagoPlazo>
+                                    <ser:pagoPlazo>
+                                        <ser:fechaVenceCuota t-esc="fechaVenceCuota" />
+                                        <ser:valorCuota t-esc="totalFactura" />
+                                    </ser:pagoPlazo>
+                                </ser:listaPagoPlazo>
+                            </ser:totalesSubTotales>
+                            <ser:usoPosterior>
+                                <ser:cufe></ser:cufe>
+                            </ser:usoPosterior>
+                        </tem:documento>
+                    </tem:Enviar>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </template>
+
+
+
+    </data>
+</odoo> 

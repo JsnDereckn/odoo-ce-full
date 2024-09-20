@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+
+        <record id="dgi_account_tax_form" model="ir.ui.view">
+            <field name="name">dgi_account_tax_form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]/group[2]/div" position="after">
+                    <field name="tasa_itbms"  options="{'no_create': True, 'no_open': True}" />                    
+                </xpath>
+            </field>
+        </record>
+
+        <record id="dgi_account_tax_list" model="ir.ui.view">
+            <field name="name">dgi_account_tax_list</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="tasa_itbms" />
+                </xpath>                
+            </field>
+        </record>
+
+    </data>
+</odoo>

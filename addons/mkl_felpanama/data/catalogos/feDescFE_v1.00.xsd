@@ -1,0 +1,237 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dgi-fep.mef.gob.pa/wsdl/FeRecepFE" elementFormDefault="qualified" targetNamespace="http://dgi-fep.mef.gob.pa/wsdl/FeRecepFE">
+
+  <xs:element name="feDatosMsg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="rEnviDescFe" type="tns:rEnviDescFe"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="dVerForm">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal">
+        <xs:pattern value="[0-9]{1,2}[.][0-9]{2}"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="dId">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:pattern value="[0-9]{1,15}"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="iAmb">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="1"/>
+        <xs:enumeration value="2"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <!--Tipo de consulta-->
+  <xs:element name="iTipoCon">
+    <xs:annotation>
+      <xs:documentation>
+        Tipo de consulta
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="1">
+          <xs:annotation>
+            <xs:documentation>Documentos electrónicos Emitidos</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="2">
+          <xs:annotation>
+            <xs:documentation>Documentos electrónicos Recibidos</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="3">
+          <xs:annotation>
+            <xs:documentation>RUC autorizado</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <!--Tipo de documento-->
+  <xs:element name="iDoc">
+    <xs:annotation>
+      <xs:documentation>
+        ID: Mayor cantidad de Operaciones
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="01">
+          <xs:annotation>
+            <xs:documentation>Factura de operación interna</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="02">
+          <xs:annotation>
+            <xs:documentation>Factura de Importacion</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="03">
+          <xs:annotation>
+            <xs:documentation>Factura de Exportación</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="04">
+          <xs:annotation>
+            <xs:documentation>Nota de crédito referente a una varias FE</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="05">
+          <xs:annotation>
+            <xs:documentation>Nota de Débito referente a una varias FE</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="06">
+          <xs:annotation>
+            <xs:documentation>Nota de Crédito</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="07">
+          <xs:annotation>
+            <xs:documentation>Nota de Débito</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="08">
+          <xs:annotation>
+            <xs:documentation>Factura de Zona Franca</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="09">
+          <xs:annotation>
+            <xs:documentation>Reembolso</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <!--Código de la sucursal desde donde se emite la factura-->
+  <xs:element name="dSucEm">
+    <xs:annotation>
+      <xs:documentation>
+        B303: Código de la sucursal desde donde se emite la factura
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[a-zA-Z0-9]{4}" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  
+  <!--Tipo de evento-->
+  <xs:element name="iTipEv">
+    <xs:annotation>
+      <xs:documentation>
+        B303: Tipo de evento
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[0-9]{4}" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <!--Fecha de emisión del documento-->
+  <xs:element name="dFechaEmDesde">
+    <xs:annotation>
+      <xs:documentation>
+        B10: Fecha de emisión del documento
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:date">
+        <xs:pattern value="\d{4}-\d\d-\d\d"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <!--Fecha de emisión del documento-->
+  <xs:element name="dFechaEmHasta">
+    <xs:annotation>
+      <xs:documentation>
+        B10: Fecha de emisión del documento
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:date">
+        <xs:pattern value="\d{4}-\d\d-\d\d"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <!--Ruc del contribuyente emisor-->
+  <xs:element name="gRucEmi" type="tns:RucRecType">
+    <!-- FICTEC: cambiar codigo y estructura en la ficha técnica-->
+    <xs:annotation>
+      <xs:documentation>
+        B301: Tipo, RUC y DV del Contribuyente Emisor
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <!--Ruc del Receptor-->
+  <xs:element name="gRucRec" type="tns:RucRecType">
+    <!-- FICTEC: cambiar codigo y estructura en la ficha tecnica-->
+    <xs:annotation>
+      <xs:documentation>
+        402: RUC del Contribuyente Receptor
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+
+  <xs:complexType name="RucRecType">
+    <xs:sequence>
+      <xs:element name="dRuc" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="5"/>
+            <xs:maxLength value="20" />
+            <xs:pattern value="(([P][E][-](([-]|[0-9]){1,17})|[N][-](([-]|[0-9]){1,18})|[E][-](([-]|[0-9]){1,18})|(([-]|[0-9]){5,20}))|(((([0-9]{1})[-][A][V][-](([-]|[0-9]){1,15}))|(([0-9]{2})[-][A][V][-](([-]|[0-9]){1,14})))|((([0-9]{1,2})[-][N][T][-](([-]|[0-9]){1,15}))|(([0-9]{1,2})[-][N][T][-](([-]|[0-9]){1,14}))|([N][T][-](([-]|[0-9]){1,14}))|(([0-9]{1,2})[-][P][I][-](([-]|[0-9]){1,14}))|([P][I][-](([-]|[0-9]){1,14}))|(([0-9]){1,2}[P][I][-](([-]|[0-9]){1,14})))))?" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="dPag">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:pattern value="[0-9]{1,5}"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:complexType name="rEnviDescFe">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:dVerForm"/>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:dId"/>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:iAmb"/>
+      <xs:element minOccurs="0" maxOccurs="1" ref="tns:gRucEmi"/>
+      <xs:element minOccurs="0" maxOccurs="1" ref="tns:gRucRec"/>
+      <xs:element minOccurs="0" maxOccurs="1" ref="tns:iDoc"/>
+      <xs:element minOccurs="0" maxOccurs="1" ref="tns:dSucEm"/>
+      <xs:element minOccurs="0" maxOccurs="1" ref="tns:iTipEv"/>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:dFechaEmDesde"/>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:dFechaEmHasta"/>
+      <xs:element minOccurs="1" maxOccurs="1" ref="tns:iTipoCon"/>
+      <xs:element minOccurs="0" maxOccurs="1" ref="tns:dPag"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

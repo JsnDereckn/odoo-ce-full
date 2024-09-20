@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+
+        <record id="res_partner_mk_panama" model="ir.ui.view">
+            <field name="name">res_partner_mk_panama</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="replace">
+                    <field name="vat" placeholder="e.g. BE0477472701" readonly="parent_id" string="RUC"/>
+                    <field name="tipo_ruc" options="{'no_create': True, 'no_open': True}" />
+                    <field name="tipo_receptor" options="{'no_create': True, 'no_open': True}" />
+                    <div class="o_form_label o_td_label">
+                        <button name="validar_ruc_dv" type="object" class="btn btn-primary btn-sm">Consultar RUC DV</button>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="dv"/>                    
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

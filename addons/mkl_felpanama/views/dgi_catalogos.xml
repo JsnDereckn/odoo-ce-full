@@ -1,0 +1,182 @@
+<odoo>
+    <data>
+
+        <!-- dgi.tipo.receptor -->
+        <record id="dgi_tipo_receptor_action" model="ir.actions.act_window">
+            <field name="name">Tipos receptor</field>
+            <field name="res_model">dgi.tipo.receptor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                </p>
+            </field>
+        </record>
+
+        <record id="dgi_tipo_receptor_tree" model="ir.ui.view">
+            <field name="name">dgi_tipo_receptor_tree</field>
+            <field name="model">dgi.tipo.receptor</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="codigo"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dgi_tipo_receptor_form" model="ir.ui.view">
+            <field name="name">dgi_tipo_receptor_form</field>
+            <field name="model">dgi.tipo.receptor</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="codigo"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- dgi.tipo.receptor -->
+
+        <!-- dgi.tipo.documento -->
+        <record id="dgi_tipo_documento_action" model="ir.actions.act_window">
+            <field name="name">Tipos documento</field>
+            <field name="res_model">dgi.tipo.documento</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                </p>
+            </field>
+        </record>
+
+        <record id="dgi_tipo_documento_tree" model="ir.ui.view">
+            <field name="name">dgi_tipo_documento_tree</field>
+            <field name="model">dgi.tipo.documento</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="codigo"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dgi_tipo_documento_form" model="ir.ui.view">
+            <field name="name">dgi_tipo_documento_form</field>
+            <field name="model">dgi.tipo.documento</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="codigo"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- dgi.tipo.documento -->
+
+
+        <!-- dgi.bienes.servicios -->
+        <record id="dgi_bienes_servicios_action" model="ir.actions.act_window">
+            <field name="name">Bienes y servicios</field>
+            <field name="res_model">dgi.bienes.servicios</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                </p>
+            </field>
+        </record>
+
+        <record id="dgi_bienes_servicios_tree" model="ir.ui.view">
+            <field name="name">dgi_bienes_servicios_tree</field>
+            <field name="model">dgi.bienes.servicios</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="codigo"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dgi_bienes_servicios_form" model="ir.ui.view">
+            <field name="name">dgi_bienes_servicios_form</field>
+            <field name="model">dgi.bienes.servicios</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="codigo"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- dgi.bienes.servicios -->
+
+        <!-- dgi.tasa.itbms -->
+        <record id="dgi_tasas_itbms_action" model="ir.actions.act_window">
+            <field name="name">Tasas del ITBMS aplicables</field>
+            <field name="res_model">dgi.tasa.itbms</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                </p>
+            </field>
+        </record>
+
+        <record id="dgi_tasas_itbms_tree" model="ir.ui.view">
+            <field name="name">dgi_tasas_itbms_tree</field>
+            <field name="model">dgi.tasa.itbms</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="codigo"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dgi_tasas_itbms_form" model="ir.ui.view">
+            <field name="name">dgi_tasas_itbms_form</field>
+            <field name="model">dgi.tasa.itbms</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="codigo"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- dgi.tasa.itbms -->
+
+        <menuitem id="dgi_menu" name="DGI" parent="account.menu_finance" sequence="33">
+            <menuitem id="dgi_tipo_receptor_menu" name="Tipos receptor" action="dgi_tipo_receptor_action" sequence="10"/>
+            <menuitem id="dgi_tipo_documento_menu" name="Tipos documento" action="dgi_tipo_documento_action" sequence="20"/>
+            <menuitem id="dgi_uom_menu" name="Unidades de medida" action="uom.product_uom_form_action" sequence="30"/>
+            <menuitem id="dgi_menu_bienes_servicios" name="Bienes y servicios" action="dgi_bienes_servicios_action" sequence="40"/>
+            <menuitem id="dgi_menu_tasas_itbms" name="Tasas del ITBMS aplicables" action="dgi_tasas_itbms_action" sequence="50"/>
+        </menuitem>
+
+    </data>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+
+      <template id="descarga_pdf_hka">
+         <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+            xmlns:tem="http://tempuri.org/"
+            xmlns:ser="http://schemas.datacontract.org/2004/07/Services.Model">
+            <soapenv:Header/>
+            <soapenv:Body>
+               <tem:DescargaPDF>
+                  <tem:tokenEmpresa t-esc="tokenEmpresa" />
+                  <tem:tokenPassword t-esc="tokenPassword" />
+                  <tem:datosDocumento>
+                     <ser:codigoSucursalEmisor t-esc="codigoSucursalEmisor" />
+                     <ser:numeroDocumentoFiscal t-esc="numeroDocumentoFiscal" />
+                     <ser:puntoFacturacionFiscal t-esc="puntoFacturacionFiscal" />
+                     <ser:tipoDocumento t-esc="tipoDocumento" />
+                     <ser:tipoEmision t-esc="tipoEmision" />
+                  </tem:datosDocumento>
+               </tem:DescargaPDF>
+            </soapenv:Body>
+         </soapenv:Envelope>
+      </template>
+
+   </data>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="consultar_ruc_dv_fel_panama">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                xmlns:tem="http://tempuri.org/"
+                xmlns:ser="http://schemas.datacontract.org/2004/07/Services.ApiRest">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <tem:ConsultarRucDV>
+                        <tem:consultarRucDVRequest>
+                            <ser:tokenEmpresa t-esc="tokenEmpresa" />
+                            <ser:tokenPassword t-esc="tokenPassword" />
+                            <ser:tipoRuc t-esc="tipoRuc" />
+                            <ser:ruc t-esc="ruc" />
+                        </tem:consultarRucDVRequest>
+                    </tem:ConsultarRucDV>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </template>
+
+    </data>
+</odoo>

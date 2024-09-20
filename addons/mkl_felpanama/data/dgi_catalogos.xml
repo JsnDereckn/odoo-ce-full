@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+
+        <!-- dgi.tipo.receptor -->
+        <record id="dgi_tipo_receptor_01" model="dgi.tipo.receptor">
+            <field name="name">Contribuyente</field>
+            <field name="codigo">01</field>
+        </record>
+
+        <record id="dgi_tipo_receptor_02" model="dgi.tipo.receptor">
+            <field name="name">Consumidor final</field>
+            <field name="codigo">02</field>
+        </record>
+
+        <record id="dgi_tipo_receptor_03" model="dgi.tipo.receptor">
+            <field name="name">Gobierno</field>
+            <field name="codigo">03</field>
+        </record>
+
+        <record id="dgi_tipo_receptor_04" model="dgi.tipo.receptor">
+            <field name="name">Extranjero</field>
+            <field name="codigo">04</field>
+        </record>
+        <!-- dgi.tipo.receptor -->
+
+
+        <!-- dgi.tipo.ruc -->
+        <record id="dgi_tipo_ruc_01" model="dgi.tipo.ruc">
+            <field name="name">Natural</field>
+            <field name="codigo">1</field>
+        </record>
+
+        <record id="dgi_tipo_ruc_02" model="dgi.tipo.ruc">
+            <field name="name">Jurídico</field>
+            <field name="codigo">2</field>
+        </record>
+        <!-- dgi.tipo.ruc -->
+
+    </data>
+</odoo>

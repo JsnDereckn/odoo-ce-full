@@ -1,0 +1,94 @@
+<odoo>
+  <data>
+
+    <record id="mkl_panama_account_move_form" model="ir.ui.view">
+      <field name="name">mkl_panama_account_move_form</field>
+      <field name="model">account.move</field>
+      <field name="inherit_id" ref="account.view_move_form" />
+      <field name="arch" type="xml">
+
+        <xpath expr="//button[@name='button_set_checked']" position="after">
+          <button name="crear_folio_fel" string="Crear FEL" type="object" class="oe_highlight" groups="account.group_account_invoice" invisible="resultado_fel != False or state in ('draft','cancel')" />
+          <!-- <button name="importar_catalogos" string="Test importar" type="object" class="oe_highlight" /> -->
+        </xpath>
+
+        <xpath expr="//page[@name='other_info']" position="after">
+          <!-- <page name="datos_fel_panama" string="Facturación electrónica" invisible="resultado_fel == False"> -->
+            <page name="datos_fel_panama" string="Facturación electrónica">
+            <group>
+              <group>
+                <field name="codigo_fel" readonly="1" />
+                <field name="resultado_fel" readonly="1" />
+                <field name="mensaje_fel" readonly="1" />
+                <field name="pdf_hka" filename="pdf_hka_name" readonly="1" />
+                <field name="pdf_hka_name" invisible="1" />
+                <field name="xml_hka" filename="xml_hka_name" readonly="1" />
+                <field name="xml_hka_name" invisible="1" />
+                <field name="fecha_emision_dgi_fel" readonly="1"/>
+              </group>
+              <group>
+                <field name="cufe_fel" readonly="1" />
+                <field name="fecha_recepcion_dgi_fel" readonly="1" />
+                <field name="nro_protocolo_autorizacion_fel" readonly="1" />
+                <field name="envio_xml" filename="envio_xml_name" readonly="1" groups="base.group_no_one" />
+                <field name="envio_xml_name" invisible="1" />
+                <field name="respuesta_xml" filename="respuesta_xml_name" readonly="1" groups="base.group_no_one" />
+                <field name="respuesta_xml_name" invisible="1" />
+              </group>
+            </group>
+            <div class="mb-2">
+              <button name="download_docs_hka" string="Descargar docs HKA" type="object" class="oe_highlight" invisible="pdf_hka" />
+            </div>
+            <group>
+              <field name="qr_fel" widget="url" readonly="1" />
+              <field name="qr_html" readonly="1" />
+            </group>
+          </page>
+        </xpath>
+
+        <xpath expr="//field[@name='invoice_date']" position="replace">
+          <field name="invoice_date" invisible="1" />
+          <field name="invoice_datetime" nolabel="1" options="{'warn_future': true}" invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')" readonly="state != 'draft'" />
+        </xpath>
+
+        <xpath expr="//field[@name='invoice_vendor_bill_id']" position="after">
+          <field name="tipos_documento_fel_permitidos" invisible="1"/>
+          <field name="tipo_documento_fel" options="{'no_open': True, 'no_create': True}" readonly="state in ('posted','cancel')" />
+
+          <field name="es_nota_credito_relacionada" invisible="1" />
+          <!-- <field name="reversed_entry_ids" invisible="not es_nota_credito_relacionada" readonly="state in ('posted','cancel')" widget="many2many_tags" /> -->
+
+          <field name="reversed_entry_ids" invisible="not es_nota_credito_relacionada" readonly="state in ('posted','cancel')">
+            <tree>
+              <field name="name"/>
+            </tree>
+          </field>
+
+          <field name="es_exportacion_fel" invisible="1" />
+          <field name="condiciones_entrega_fel" invisible="es_exportacion_fel == False" required="es_exportacion_fel == True" readonly="state in ('posted','cancel')"/>
+          <field name="moneda_exportacion" invisible="es_exportacion_fel == False" required="es_exportacion_fel == True" readonly="state in ('posted','cancel')"/>
+          <field name="puerto_embarque" invisible="es_exportacion_fel == False" required="es_exportacion_fel == True" readonly="state in ('posted','cancel')"/>
+        </xpath>
+
+        <xpath expr="//button[@name='button_draft']" position="attributes">
+          <attribute name="invisible">(not show_reset_to_draft_button) or (codigo_fel in ('200',
+            '201'))</attribute>
+        </xpath>
+
+      </field>
+    </record>
+
+    <record id="mkl_panama_account_move_tree" model="ir.ui.view">
+      <field name="name">mkl_panama_account_move_tree</field>
+      <field name="model">account.move</field>
+      <field name="inherit_id" ref="account.view_invoice_tree" />
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='state']" position="after">
+          <field name="tipo_documento_fel"/>
+          <field name="resultado_fel" widget="badge" decoration-success="resultado_fel in ('procesado')" />
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

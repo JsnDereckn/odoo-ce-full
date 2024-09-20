@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="report_invoice_fel_panama" inherit_id="account.report_invoice_document">
+
+        <xpath expr="//div[hasclass('row')]" position="replace">
+            <div class="row">
+                <div class="col-4">
+                    <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                    <div t-if="o.partner_id.vat">
+                        <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                        <t t-else="">Tax ID</t>:                        <span t-field="o.partner_id.vat"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <t t-if="o.cufe_fel">
+                        <div class="text-end" style="font-size:11px; padding-right:20px;">
+                            <b>CUFE: </b>
+                            <span t-field="o.cufe_fel" />
+                            <br/>
+                            <b>Protocolo de autorización: </b>
+                            <span t-field="o.nro_protocolo_autorizacion_fel" />
+                            <b>de</b>
+                            <span t-field="o.fecha_recepcion_dgi_fel" />
+                        </div>
+                    </t>
+                </div>
+                <div class="col-2">
+                    <t t-if="o.cufe_fel">
+                        <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s' % ('QR',o.qr_fel)" style="width:140px;height:140px; float:right; text-align:right" />
+                    </t>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_description']" position="before">
+            <th name="th_code" class="text-start"><span>Código</span></th>
+        </xpath>
+
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_priceunit']" position="before">
+            <th name="th_udm_panama"><span>Unidad</span></th>
+        </xpath>
+
+        <xpath expr="//table[@name='invoice_line_table']/tbody/t[4]/tr/t[1]/td[@name='account_invoice_line_name']" position="replace">
+            <td name="td_code" class="text-start"><span t-field="line.product_id.default_code"></span></td>
+            <td name="account_invoice_line_name"><span t-if="line.name" t-field="line.product_id.name" t-options="{'widget': 'text'}">Bacon Burger</span></td>
+        </xpath>
+
+        <xpath expr="//table[@name='invoice_line_table']/tbody/t[4]/tr/t[1]/td[@name='td_price_unit']" position="before">
+            <td name="td_udm_panama"><span t-field="line.product_id.uom_id.name"></span></td>
+        </xpath>
+
+    </template>
+
+</odoo>

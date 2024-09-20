@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dgi_tipo_receptor,Accesso DGI tipo receptor,mkl_felpanama.model_dgi_tipo_receptor,base.group_user,1,1,1,1
+access_gdi_tipo_documento,Accesso DGI tipo documento,mkl_felpanama.model_dgi_tipo_documento,base.group_user,1,1,1,1
+access_gdi_tipo_sucursal,Accesso DGI tipo sucursal,mkl_felpanama.model_dgi_tipo_sucursal,base.group_user,1,1,1,1
+access_gdi_tipo_ruc,Accesso DGI tipo ruc,mkl_felpanama.model_dgi_tipo_ruc,base.group_user,1,1,1,1
+access_dgi_bienes_servicios,Acceso Bienes Servicios DGI,mkl_felpanama.model_dgi_bienes_servicios,base.group_user,1,1,1,1
+access_dgi_tasa_itbms,Acceso Tasas ITBMS,mkl_felpanama.model_dgi_tasa_itbms,base.group_user,1,1,1,1
+access_account_rev_fel,Acceso Notas Credito Rel,mkl_felpanama.model_account_reversal_fel,base.group_user,1,1,1,1

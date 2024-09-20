@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://dgi-fep.mef.gob.pa" xmlns:xs="http://www.w3.org/2001/XMLSchema"  targetNamespace="http://dgi-fep.mef.gob.pa" elementFormDefault="qualified" id="EventoReferenciada">
+    <xs:element name="iDoc">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="04">
+                    <xs:annotation>
+                        <xs:documentation>Nota de crédito referente a una FE</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="05">
+                    <xs:annotation>
+                        <xs:documentation>Nota de Débito referente a una FE</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="iAmb">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:enumeration value="1"/>
+                <xs:enumeration value="2"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="dProtAut">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:totalDigits value="20"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="dVerForm">
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:pattern value="[0-9]{1,2}[.][0-9]{2}"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="dCUFERef">                   
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:length value="64"/>
+                <xs:pattern value="[F][E](([A|V|T|E|P|N|I]|[-]|[0-9]){62})?"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="dCUFE">                   
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:length value="64"/>
+                <xs:pattern value="[F][E](([A|V|T|E|P|N|I]|[-]|[0-9]){62})?"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>                  
+    <xs:element name="gInfProt">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iAmb">
+                    <xs:annotation>
+                        <xs:documentation>ER04: Ambiente de destino</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="iDoc">
+                    <xs:annotation>
+                        <xs:documentation>ER05: Ambiente de destino</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element ref="dCUFE">
+                    <xs:annotation>
+                        <xs:documentation>ER06: CUFE de la NC ó ND procesada</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element ref="dProtAut">
+                    <xs:annotation>
+                        <xs:documentation>ER07: Número del protocolo de autorización de la NC ó ND</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="dFecProc" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>ER08: Fecha de procesamiento de la NC ó ND</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element ref="dCUFERef">
+                    <xs:annotation>
+                        <xs:documentation>ER09: CUFE de la NC ó ND referenciada</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rEvReferenciada">
+        <xs:annotation>
+            <xs:documentation>ER01: Evento de FE Referenciada (Raíz)</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dVerForm">
+                    <xs:annotation>
+                        <xs:documentation>ER02: Versión del formato</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="gInfProt">
+                    <xs:annotation>
+                        <xs:documentation>ER03: Grupo de información para el registro del evento</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

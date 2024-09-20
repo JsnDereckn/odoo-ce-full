@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dgi-fep.mef.gob.pa/wsdl/FeRecepFE" elementFormDefault="qualified" targetNamespace="http://dgi-fep.mef.gob.pa/wsdl/FeRecepFE">  
+  <xs:element name="feHeaderMsg" type="tns:feHeaderMsg" />
+  <xs:complexType name="feHeaderMsg">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="dVerForm" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

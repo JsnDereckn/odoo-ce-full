@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="TakeAwayReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt')]/div[11]" position="before">
+
+            <t t-if="props.data.cufe_fel">
+                <div class="pos-receipt-order-data">
+                    <t t-if="props.data.qr_fel">
+                        <img t-att-src="props.data.qr_fel" style="width:180px;height:180px;" />
+                        <br/>
+                        <br/>
+                    </t>
+                    CUFE: <t t-esc="props.data.cufe_fel"/>
+                <br/>
+                    Protocolo de autorización: <t t-esc="props.data.nro_protocolo_autorizacion_fel"/>
+            <br/>
+                    Fecha autorización: <t t-esc="props.data.fecha_recepcion_dgi_fel"/>
+        <br/>
+    </div>
+</t>
+
+</xpath>
+</t>
+</templates>
